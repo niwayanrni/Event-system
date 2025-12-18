@@ -12,7 +12,6 @@ Proyek ini merupakan implementasi **event-driven system** menggunakan **Docker C
 
 Sistem dirancang agar **event dengan kombinasi `(topic, event_id)` yang sama hanya diproses satu kali**, meskipun dikirim berulang atau terjadi restart layanan.
 
----
 
 ## 🧱 Arsitektur Sistem
 
@@ -42,7 +41,6 @@ Sistem terdiri dari empat layanan utama yang berjalan dalam satu jaringan Docker
   - Statistik pemrosesan
 - Data tetap aman meskipun container direstart
 
----
 
 ## 📑 Model Event
 
@@ -57,5 +55,6 @@ Setiap event memiliki format JSON berikut:
   "payload": { }
 }
 
-link youtube : https://youtu.be/kB1WWWliOOA
+
+## Link Youtube: https://youtu.be/kB1WWWliOOA
 
