@@ -1,0 +1,45 @@
+# 📦 Event System with Idempotency & Deduplication
+---
+
+## 📌 Deskripsi Proyek
+
+Proyek ini merupakan implementasi **event-driven system** menggunakan **Docker Compose** yang mendukung:
+
+- At-least-once delivery
+- Idempotency & deduplication persisten
+- Transaksi aman terhadap race condition
+- Multi-worker concurrent processing
+- Persistensi data meskipun container direstart
+
+Sistem dirancang agar **event dengan (topic, event_id) yang sama hanya diproses satu kali**, meskipun dikirim berulang atau terjadi restart layanan.
+
+---
+
+## 🧱 Arsitektur Sistem
+
+Sistem terdiri dari empat layanan utama:
+
+### 1️⃣ Aggregator
+- API utama sistem
+- Endpoint publish event dan monitoring
+- Menyimpan event unik ke database
+- Menjalankan worker internal untuk memproses event dari broker
+
+### 2️⃣ Publisher
+- Simulator pengirim event
+- Mengirim batch event dengan ±30% duplikasi
+- Membuktikan skema at-least-once delivery
+
+### 3️⃣ Broker (Redis)
+- Queue internal untuk event
+- Mendukung pemrosesan paralel oleh worker
+
+### 4️⃣ Storage (PostgreSQL)
+- Penyimpanan persisten
+- Menyimpan event yang sudah diproses dan statistik
+- Tetap aman setelah container direstart
+
+---
+
+
+
